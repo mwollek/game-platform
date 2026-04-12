@@ -17,6 +17,7 @@ export function HealthStatus() {
 
 	return (
 		<div
+			data-testid="health-panel"
 			className={cn(
 				"space-y-3 rounded-lg border bg-background/50 p-4 transition-colors",
 				isHealthy &&
@@ -66,6 +67,7 @@ export function HealthStatus() {
 				className={cn(isHealthy && "bg-emerald-500/25", isUnhealthy && "bg-red-500/25")}
 			/>
 			<pre
+				data-testid="health-panel-response"
 				className={cn(
 					"max-h-48 overflow-auto rounded-md p-3 font-mono text-xs",
 					isHealthy && "bg-emerald-950/35 text-emerald-100/90",

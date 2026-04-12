@@ -5,7 +5,8 @@
 	"scripts": {
 		"dev": "next dev --turbopack",
 		"build": "next build",
-		"test": "node -e \"console.log('No tests yet')\"",
+		"test": "vitest run",
+		"test:watch": "vitest",
 		"start": "next start",
 		"lint": "next lint",
 		"format": "prettier --write .",
@@ -30,16 +31,22 @@
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.2.0",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/react": "^16.3.2",
 		"@types/node": "^22.10.0",
 		"@types/react": "^19.0.0",
 		"@types/react-dom": "^19.0.0",
+		"@vitejs/plugin-react": "^6.0.1",
 		"eslint": "^9.16.0",
 		"eslint-config-next": "^15.3.0",
 		"eslint-config-prettier": "^10.0.0",
 		"husky": "^9.1.7",
+		"jsdom": "^29.0.2",
 		"lint-staged": "^16.4.0",
+		"msw": "^2.13.2",
 		"prettier": "^3.4.0",
-		"typescript": "^5.7.0"
+		"typescript": "^5.7.0",
+		"vitest": "^4.1.4"
 	},
 	"lint-staged": {
 		"*": "prettier --write --ignore-unknown"
