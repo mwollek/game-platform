@@ -20,14 +20,16 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md).
 
 ### M0 — Repository and standards
 
+**Status: complete** (2026-04-12) — all items below checked; exit criteria met.
+
 **Goal:** Empty project is bootstrapped and conventions are fixed.
 
 - [x] Initialize Next.js (App Router, TypeScript, ESLint; align with team preferences e.g. `src/`).
 - [x] Add Prettier (or rely on ESLint only — pick one and document in README).
-- [x] Root `README.md`: how to run locally, env vars overview.
-- [ ] Optional: CI skeleton (lint on PR) — can slip to M1 if preferred.
+- [x] Root `README.md`: how to run locally, env vars overview (none required yet for local dev; M1 adds `.env.example`).
+- [x] CI on PR/push: `.github/workflows/cicd.yml` — lint, tests, build (plus CD placeholder on `main`).
 
-**Exit criteria:** `pnpm dev` / `npm run dev` runs; lint passes on a clean tree. _(Met for core items; optional CI still open.)_
+**Exit criteria:** `pnpm dev` / `npm run dev` runs; lint passes on a clean tree; CI green on PR/push. _(Met.)_
 
 ---
 
@@ -119,3 +121,4 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md).
 | 2026-04-12 | Initial roadmap and ADR 0001 alignment                                         |
 | 2026-04-12 | M0: Next.js app shell, `/api/health`, README tooling note                      |
 | 2026-04-12 | Prettier (semicolons, tabs width 4), `eslint-config-prettier`, `.editorconfig` |
+| 2026-04-12 | M0 closed: CI workflow (lint + test + build); roadmap exit criteria updated    |
