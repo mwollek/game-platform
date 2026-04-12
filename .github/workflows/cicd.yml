@@ -4,8 +4,10 @@ on:
     pull_request:
     push:
 
+# Scope by branch: push runs group per ref_name; PR runs per PR number + head branch
+# (github.ref on pull_request is refs/pull/N/merge, not the source branch name).
 concurrency:
-    group: cicd-${{ github.workflow }}-${{ github.ref }}
+    group: cicd-${{ github.workflow }}-${{ github.event_name == 'pull_request' && format('pr-{0}-{1}', github.event.pull_request.number, github.head_ref) || format('push-{0}', github.ref_name) }}
     cancel-in-progress: true
 
 jobs:

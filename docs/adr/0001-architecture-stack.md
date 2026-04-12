@@ -28,3 +28,4 @@ We are building a web platform for simple 2D browser games with user accounts, p
 ## Related
 
 - `docs/ROADMAP.md` — milestones and execution order.
+- [ADR 0002](./0002-ui-visual-language.md) — UI visual language for the shell (light, pastel, copy tone).

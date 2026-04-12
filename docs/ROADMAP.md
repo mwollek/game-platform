@@ -4,15 +4,16 @@ This document is the **source of truth** for implementation order. Update it whe
 
 ## What we agreed (summary)
 
-| Topic                | Choice                                                            |
-| -------------------- | ----------------------------------------------------------------- |
-| Platform             | Simple **2D browser games** embedded in a web shell               |
-| Architecture         | **Next.js monolith** (App Router), TypeScript                     |
-| Features (core)      | Auth, **per-game scores**, **leaderboards**                       |
-| Future               | **Multiplayer** — planned extension, not part of early milestones |
-| Docs / code language | **English**; ADRs in `docs/adr/`                                  |
+| Topic                | Choice                                                                                                                  |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Platform             | Simple **2D browser games** embedded in a web shell                                                                     |
+| Architecture         | **Next.js monolith** (App Router), TypeScript                                                                           |
+| Features (core)      | Auth, **per-game scores**, **leaderboards**                                                                             |
+| Future               | **Multiplayer** — planned extension, not part of early milestones                                                       |
+| UI / visual language | **Light**, **pastel**, **emoji-first** game tiles; teen-friendly English — [ADR 0002](./adr/0002-ui-visual-language.md) |
+| Docs / code language | **English**; ADRs in `docs/adr/`                                                                                        |
 
-Details: [ADR 0001](./adr/0001-architecture-stack.md).
+Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-visual-language.md).
 
 ---
 
