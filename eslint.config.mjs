@@ -11,6 +11,12 @@ const compat = new FlatCompat({ baseDirectory: __dirname });
 const eslintConfig = [
 	...compat.extends("next/core-web-vitals", "next/typescript"),
 	eslintConfigPrettier,
+	{
+		files: ["src/app/api/**/*.ts"],
+		rules: {
+			"@typescript-eslint/explicit-module-boundary-types": "error",
+		},
+	},
 ];
 
 export default eslintConfig;
