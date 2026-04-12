@@ -22,12 +22,12 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md).
 
 **Goal:** Empty project is bootstrapped and conventions are fixed.
 
-- [ ] Initialize Next.js (App Router, TypeScript, ESLint; align with team preferences e.g. `src/`).
-- [ ] Add Prettier (or rely on ESLint only — pick one and document in README).
-- [ ] Root `README.md`: how to run locally, env vars overview.
+- [x] Initialize Next.js (App Router, TypeScript, ESLint; align with team preferences e.g. `src/`).
+- [x] Add Prettier (or rely on ESLint only — pick one and document in README).
+- [x] Root `README.md`: how to run locally, env vars overview.
 - [ ] Optional: CI skeleton (lint on PR) — can slip to M1 if preferred.
 
-**Exit criteria:** `pnpm dev` / `npm run dev` runs; lint passes on a clean tree.
+**Exit criteria:** `pnpm dev` / `npm run dev` runs; lint passes on a clean tree. *(Met for core items; optional CI still open.)*
 
 ---
 
@@ -117,3 +117,4 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md).
 | Date | Change |
 |------|--------|
 | 2026-04-12 | Initial roadmap and ADR 0001 alignment |
+| 2026-04-12 | M0: Next.js app shell, `/api/health`, README tooling note |
