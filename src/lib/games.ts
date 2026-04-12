@@ -10,16 +10,16 @@ export const GAMES: readonly GameListItem[] = [
 	{
 		id: "snake",
 		title: "Snake",
-		description: "Klasyczny wąż na planszy — zbieraj, rośnij, unikaj kolizji.",
+		description: "Classic snake on a grid - collect, grow, and avoid collisions.",
 	},
 	{
 		id: "space-invader",
 		title: "Space Invader",
-		description: "Obrona przed falami obcych — strzelaj i przetrwaj kolejne poziomy.",
+		description: "Defend against waves of aliens - shoot and survive each level.",
 	},
 	{
 		id: "ping-pong",
-		title: "Ping pong",
-		description: "Dwie paletki i piłka — refleks i precyzja w rozgrywce 1 na 1.",
+		title: "Ping Pong",
+		description: "Two paddles and one ball - reflexes and precision in a 1v1 match.",
 	},
 ];

@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { type GameId, GAMES } from "@/lib/games";
 import { cn } from "@/lib/utils";
-import { CircleDot, Rocket, Worm } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 
 const gameVisual: Record<
 	GameId,
 	{
-		Icon: LucideIcon;
+		emoji: string;
+		tagline: string;
+		badge: string;
+		badgeClass: string;
 		tileClass: string;
 		iconClass: string;
 		cardClass: string;
@@ -15,33 +16,37 @@ const gameVisual: Record<
 	}
 > = {
 	snake: {
-		Icon: Worm,
-		tileClass:
-			"bg-gradient-to-br from-lime-300/50 via-emerald-400/35 to-cyan-500/30 ring-lime-200/55 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35)]",
-		iconClass: "text-emerald-950 drop-shadow-sm",
+		emoji: "🐍",
+		tagline: "A classic that still pulls you in.",
+		badge: "hot",
+		badgeClass: "bg-emerald-100 text-emerald-700",
+		tileClass: "bg-gradient-to-br from-emerald-100 via-teal-100 to-cyan-100 ring-emerald-200",
+		iconClass: "drop-shadow-[0_1px_0_rgba(255,255,255,0.6)]",
 		cardClass:
-			"border-emerald-400/25 bg-gradient-to-b from-emerald-500/[0.14] to-cyan-500/[0.06] shadow-[0_8px_30px_-12px_rgba(34,197,94,0.35)]",
-		buttonClass:
-			"border-emerald-400/55 bg-emerald-500/20 text-emerald-50 hover:bg-emerald-500/30 dark:text-emerald-50",
+			"border-emerald-200 bg-gradient-to-b from-emerald-50 to-cyan-50 shadow-[0_8px_20px_rgba(16,185,129,0.14)]",
+		buttonClass: "border-emerald-300 bg-white/80 text-emerald-900 hover:bg-emerald-100",
 	},
 	"space-invader": {
-		Icon: Rocket,
-		tileClass:
-			"bg-gradient-to-br from-fuchsia-300/45 via-violet-400/40 to-sky-400/35 ring-fuchsia-200/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35)]",
-		iconClass: "text-violet-950 drop-shadow-sm",
+		emoji: "👾",
+		tagline: "Retro vibes and quick fingers.",
+		badge: "new",
+		badgeClass: "bg-violet-100 text-violet-700",
+		tileClass: "bg-gradient-to-br from-fuchsia-100 via-violet-100 to-sky-100 ring-violet-200",
+		iconClass: "drop-shadow-[0_1px_0_rgba(255,255,255,0.6)]",
 		cardClass:
-			"border-fuchsia-400/25 bg-gradient-to-b from-fuchsia-500/[0.12] to-sky-500/[0.08] shadow-[0_8px_30px_-12px_rgba(168,85,247,0.35)]",
-		buttonClass:
-			"border-fuchsia-400/55 bg-fuchsia-500/20 text-fuchsia-50 hover:bg-fuchsia-500/30 dark:text-fuchsia-50",
+			"border-violet-200 bg-gradient-to-b from-violet-50 to-sky-50 shadow-[0_8px_20px_rgba(139,92,246,0.14)]",
+		buttonClass: "border-violet-300 bg-white/80 text-violet-900 hover:bg-violet-100",
 	},
 	"ping-pong": {
-		Icon: CircleDot,
-		tileClass:
-			"bg-gradient-to-br from-amber-200/55 via-orange-300/45 to-rose-400/35 ring-amber-100/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]",
-		iconClass: "text-orange-950 drop-shadow-sm",
+		emoji: "🏓",
+		tagline: "1v1 matches and pure focus.",
+		badge: "2P",
+		badgeClass: "bg-amber-100 text-amber-700",
+		tileClass: "bg-gradient-to-br from-amber-100 via-orange-100 to-rose-100 ring-amber-200",
+		iconClass: "drop-shadow-[0_1px_0_rgba(255,255,255,0.6)]",
 		cardClass:
-			"border-amber-400/30 bg-gradient-to-b from-amber-400/[0.14] to-rose-500/[0.07] shadow-[0_8px_30px_-12px_rgba(251,146,60,0.35)]",
-		buttonClass: "border-amber-400/55 bg-amber-500/25 text-amber-50 hover:bg-amber-500/35",
+			"border-amber-200 bg-gradient-to-b from-amber-50 to-rose-50 shadow-[0_8px_20px_rgba(251,146,60,0.15)]",
+		buttonClass: "border-amber-300 bg-white/80 text-amber-900 hover:bg-amber-100",
 	},
 };
 
@@ -49,47 +54,65 @@ export function GamesPanel() {
 	return (
 		<div data-testid="games-panel" className="space-y-4">
 			<div className="space-y-1">
-				<h2 className="bg-gradient-to-r from-emerald-300 via-fuchsia-300 to-amber-300 bg-clip-text text-base font-semibold tracking-tight text-transparent sm:text-lg">
-					Dostępne gry
+				<h2 className="bg-gradient-to-r from-emerald-500 via-violet-500 to-amber-500 bg-clip-text text-base font-semibold tracking-tight text-transparent sm:text-lg">
+					Available Games
 				</h2>
-				<p className="text-xs text-foreground/75 sm:text-sm">
-					Wybierz tytuł poniżej. Implementacja rozgrywki pojawi się w kolejnych
-					iteracjach.
+				<p className="text-xs text-slate-600 sm:text-sm">
+					Jump in, beat your high score, and play a quick match.
 				</p>
 			</div>
 			<ul className={cn("grid gap-3 sm:gap-4", "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3")}>
 				{GAMES.map((game) => {
-					const { Icon, tileClass, iconClass, cardClass, buttonClass } =
-						gameVisual[game.id];
+					const {
+						emoji,
+						tagline,
+						badge,
+						badgeClass,
+						tileClass,
+						iconClass,
+						cardClass,
+						buttonClass,
+					} = gameVisual[game.id];
 					return (
 						<li key={game.id} className="flex h-full min-h-0">
 							<article
 								className={cn(
-									"flex h-full min-h-0 w-full flex-col gap-4 rounded-xl border p-4 backdrop-blur-sm",
+									"flex h-full min-h-0 w-full flex-col gap-4 rounded-2xl border p-4",
 									"transition-[border-color,box-shadow,transform] duration-200 sm:p-5",
-									"hover:-translate-y-0.5 hover:shadow-lg",
+									"hover:-translate-y-0.5 hover:shadow-xl",
 									cardClass
 								)}
 							>
 								<div className="flex min-h-0 gap-3 sm:gap-4">
 									<div
 										className={cn(
-											"flex size-12 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset sm:size-14",
+											"flex size-12 shrink-0 items-center justify-center rounded-2xl ring-1 ring-inset sm:size-14",
 											tileClass
 										)}
 									>
-										<Icon
-											className={cn("size-6 sm:size-7", iconClass)}
-											strokeWidth={1.75}
+										<span
+											className={cn("text-2xl sm:text-3xl", iconClass)}
 											aria-hidden
-										/>
+										>
+											{emoji}
+										</span>
 									</div>
 									<div className="min-w-0 flex-1 space-y-1.5">
-										<h3 className="text-base font-semibold leading-snug text-foreground sm:text-[1.05rem]">
-											{game.title}
-										</h3>
-										<p className="text-xs leading-relaxed text-foreground/70 sm:text-sm">
-											{game.description}
+										<div className="flex items-center justify-between gap-2">
+											<h3 className="text-base font-semibold leading-snug text-slate-900 sm:text-[1.05rem]">
+												{game.title}
+											</h3>
+											<span
+												className={cn(
+													"rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
+													badgeClass
+												)}
+											>
+												{badge}
+											</span>
+										</div>
+										<p className="text-xs leading-relaxed text-slate-600 sm:text-sm">
+											{tagline}
 										</p>
 									</div>
 								</div>
@@ -104,7 +127,7 @@ export function GamesPanel() {
 									disabled
 									aria-disabled
 								>
-									Wkrótce
+									Coming Soon
 								</Button>
 							</article>
 						</li>

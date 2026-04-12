@@ -17,11 +17,11 @@ describe("HealthStatus", () => {
 	it("shows green panel when health status is ok", async () => {
 		render(<HealthStatus />);
 
-		await screen.findByText("ok");
+		await screen.findByText("🟢 API online");
 
 		const panel = screen.getByTestId("health-panel");
-		expect(panel.className).toContain("border-emerald-400/50");
-		expect(panel.className).not.toContain("border-red-500/45");
+		expect(panel.className).toContain("border-emerald-200");
+		expect(panel.className).not.toContain("border-red-200");
 	});
 
 	it("shows loading state until endpoint responds", async () => {
@@ -46,7 +46,7 @@ describe("HealthStatus", () => {
 
 		blocker.release();
 
-		await screen.findByText("ok");
+		await screen.findByText("🟢 API online");
 		expect(screen.queryByText("checking")).toBeNull();
 	});
 
@@ -66,7 +66,7 @@ describe("HealthStatus", () => {
 		await screen.findByText("degraded");
 
 		const panel = screen.getByTestId("health-panel");
-		expect(panel.className).toContain("border-red-500/45");
-		expect(panel.className).not.toContain("border-emerald-400/50");
+		expect(panel.className).toContain("border-red-200");
+		expect(panel.className).not.toContain("border-emerald-200");
 	});
 });
