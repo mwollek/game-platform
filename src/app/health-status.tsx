@@ -19,12 +19,14 @@ export function HealthStatus() {
 		<div
 			data-testid="health-panel"
 			className={cn(
-				"space-y-3 rounded-lg border bg-background/50 p-4 transition-colors",
+				"space-y-3 rounded-2xl border bg-white/80 p-4 transition-colors shadow-sm",
 				isHealthy &&
-					"border-emerald-500/45 bg-emerald-500/[0.07] shadow-[0_0_0_1px_rgba(16,185,129,0.12)]",
+					"border-emerald-200 bg-gradient-to-b from-emerald-50 to-teal-50 shadow-[0_10px_24px_rgba(16,185,129,0.12)]",
 				isUnhealthy &&
-					"border-red-500/45 bg-red-500/[0.07] shadow-[0_0_0_1px_rgba(239,68,68,0.12)]",
-				!isHealthy && !isUnhealthy && "border-border/70"
+					"border-red-200 bg-gradient-to-b from-red-50 to-orange-50 shadow-[0_10px_24px_rgba(239,68,68,0.1)]",
+				!isHealthy &&
+					!isUnhealthy &&
+					"border-violet-100 bg-gradient-to-b from-violet-50/80 to-white"
 			)}
 		>
 			<div className="flex items-center justify-between gap-3">
@@ -33,22 +35,22 @@ export function HealthStatus() {
 						variant="outline"
 						className={cn(
 							isHealthy &&
-								"border-emerald-500/40 bg-emerald-500/15 text-emerald-300 [a]:hover:bg-emerald-500/25",
+								"border-emerald-300 bg-emerald-100 text-emerald-700 [a]:hover:bg-emerald-200",
 							isUnhealthy &&
-								"border-red-500/40 bg-red-500/15 text-red-300 [a]:hover:bg-red-500/25",
+								"border-red-300 bg-red-100 text-red-700 [a]:hover:bg-red-200",
 							!isHealthy &&
 								!isUnhealthy &&
-								"border-border/60 bg-muted/30 text-muted-foreground"
+								"border-violet-200 bg-violet-100 text-violet-700"
 						)}
 					>
-						{badgeLabel}
+						{isHealthy ? "🟢 API online" : badgeLabel}
 					</Badge>
 					<span
 						className={cn(
 							"text-xs",
-							isHealthy && "text-emerald-400/90",
-							isUnhealthy && "text-red-400/90",
-							!isHealthy && !isUnhealthy && "text-muted-foreground"
+							isHealthy && "text-emerald-700",
+							isUnhealthy && "text-red-700",
+							!isHealthy && !isUnhealthy && "text-violet-700"
 						)}
 					>
 						GET /api/health
@@ -59,20 +61,27 @@ export function HealthStatus() {
 					size="sm"
 					onClick={() => void refresh()}
 					disabled={isLoading}
+					className="text-slate-700 hover:bg-slate-100"
 				>
 					{isLoading ? "Refreshing..." : "Refresh"}
 				</Button>
 			</div>
 			<Separator
-				className={cn(isHealthy && "bg-emerald-500/25", isUnhealthy && "bg-red-500/25")}
+				className={cn(
+					isHealthy && "bg-emerald-200",
+					isUnhealthy && "bg-red-200",
+					!isHealthy && !isUnhealthy && "bg-violet-200"
+				)}
 			/>
 			<pre
 				data-testid="health-panel-response"
 				className={cn(
-					"max-h-48 overflow-auto rounded-md p-3 font-mono text-xs",
-					isHealthy && "bg-emerald-950/35 text-emerald-100/90",
-					isUnhealthy && "bg-red-950/35 text-red-100/90",
-					!isHealthy && !isUnhealthy && "bg-muted/40 text-muted-foreground"
+					"max-h-48 overflow-auto rounded-xl border p-3 font-mono text-xs",
+					isHealthy && "border-emerald-200 bg-emerald-100/60 text-emerald-900",
+					isUnhealthy && "border-red-200 bg-red-100/60 text-red-900",
+					!isHealthy &&
+						!isUnhealthy &&
+						"border-violet-200 bg-violet-100/60 text-violet-900"
 				)}
 			>
 				{line}
