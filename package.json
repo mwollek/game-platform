@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "next dev --turbopack",
 		"build": "next build",
+		"test": "node -e \"console.log('No tests yet')\"",
 		"start": "next start",
 		"lint": "next lint",
 		"format": "prettier --write .",
