@@ -4,13 +4,13 @@ This document is the **source of truth** for implementation order. Update it whe
 
 ## What we agreed (summary)
 
-| Topic | Choice |
-|-------|--------|
-| Platform | Simple **2D browser games** embedded in a web shell |
-| Architecture | **Next.js monolith** (App Router), TypeScript |
-| Features (core) | Auth, **per-game scores**, **leaderboards** |
-| Future | **Multiplayer** — planned extension, not part of early milestones |
-| Docs / code language | **English**; ADRs in `docs/adr/` |
+| Topic                | Choice                                                            |
+| -------------------- | ----------------------------------------------------------------- |
+| Platform             | Simple **2D browser games** embedded in a web shell               |
+| Architecture         | **Next.js monolith** (App Router), TypeScript                     |
+| Features (core)      | Auth, **per-game scores**, **leaderboards**                       |
+| Future               | **Multiplayer** — planned extension, not part of early milestones |
+| Docs / code language | **English**; ADRs in `docs/adr/`                                  |
 
 Details: [ADR 0001](./adr/0001-architecture-stack.md).
 
@@ -27,7 +27,7 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md).
 - [x] Root `README.md`: how to run locally, env vars overview.
 - [ ] Optional: CI skeleton (lint on PR) — can slip to M1 if preferred.
 
-**Exit criteria:** `pnpm dev` / `npm run dev` runs; lint passes on a clean tree. *(Met for core items; optional CI still open.)*
+**Exit criteria:** `pnpm dev` / `npm run dev` runs; lint passes on a clean tree. _(Met for core items; optional CI still open.)_
 
 ---
 
@@ -114,7 +114,8 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md).
 
 ## Revision history
 
-| Date | Change |
-|------|--------|
-| 2026-04-12 | Initial roadmap and ADR 0001 alignment |
-| 2026-04-12 | M0: Next.js app shell, `/api/health`, README tooling note |
+| Date       | Change                                                                         |
+| ---------- | ------------------------------------------------------------------------------ |
+| 2026-04-12 | Initial roadmap and ADR 0001 alignment                                         |
+| 2026-04-12 | M0: Next.js app shell, `/api/health`, README tooling note                      |
+| 2026-04-12 | Prettier (semicolons, tabs width 4), `eslint-config-prettier`, `.editorconfig` |

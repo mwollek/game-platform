@@ -9,7 +9,8 @@ A web platform for simple 2D browser games: accounts, per-game scores, and leade
 
 ## Tooling
 
-- **Lint:** ESLint (`npm run lint`). Prettier is not configured yet; add later if the team wants it.
+- **Lint:** ESLint (`npm run lint`).
+- **Format:** Prettier — semicolons, **tabs** (width 4). Run `npm run format` or `npm run format:check`. Config: `prettier.config.mjs`.
 
 ## Local setup
 
@@ -26,4 +27,6 @@ Open [http://localhost:3000](http://localhost:3000). Health JSON: [http://localh
 npm run build   # production build
 npm run start   # run production server
 npm run lint
+npm run format        # Prettier write
+npm run format:check  # Prettier check (CI)
 ```
