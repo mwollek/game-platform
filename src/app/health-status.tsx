@@ -1,5 +1,6 @@
 "use client";
 
+import { http } from "@/lib/axios";
 import { useEffect, useState } from "react";
 
 type HealthPayload = {
@@ -13,12 +14,8 @@ export function HealthStatus() {
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
-		fetch("/api/health")
-			.then((res) => {
-				if (!res.ok) throw new Error(`HTTP ${res.status}`);
-				return res.json() as Promise<HealthPayload>;
-			})
-			.then(setPayload)
+		http.get<HealthPayload>("/api/health")
+			.then((res) => setPayload(res.data))
 			.catch(() => setError("Failed to load /api/health"));
 	}, []);
 
