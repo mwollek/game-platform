@@ -1,0 +1,15 @@
+FROM node:20-alpine AS base
+
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+ENV HUSKY=0
+
+COPY package.json package-lock.json ./
+COPY scripts/docker-entrypoint.dev.sh /usr/local/bin/docker-entrypoint.dev.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.dev.sh
+
+RUN npm ci
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.dev.sh"]
+CMD ["npm", "run", "dev:docker"]
