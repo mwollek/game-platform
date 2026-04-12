@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { HttpResponse, http } from "msw";
 import { describe, expect, it } from "vitest";
 
@@ -13,10 +13,16 @@ function createBlocker() {
 	return { promise, release };
 }
 
+function openHealthDetails() {
+	fireEvent.click(screen.getByTestId("health-indicator"));
+}
+
 describe("HealthStatus", () => {
 	it("shows green panel when health status is ok", async () => {
 		render(<HealthStatus />);
 
+		await screen.findByRole("button", { name: /API online/i });
+		openHealthDetails();
 		await screen.findByText("🟢 API online");
 
 		const panel = screen.getByTestId("health-panel");
@@ -40,6 +46,7 @@ describe("HealthStatus", () => {
 
 		render(<HealthStatus />);
 
+		openHealthDetails();
 		expect(screen.getByText("checking")).toBeTruthy();
 		expect(screen.getByText("GET /api/health - loading...")).toBeTruthy();
 		expect(screen.getByRole("button", { name: "Refreshing..." })).toBeTruthy();
@@ -63,6 +70,8 @@ describe("HealthStatus", () => {
 
 		render(<HealthStatus />);
 
+		await screen.findByRole("button", { name: /API status: degraded/i });
+		openHealthDetails();
 		await screen.findByText("degraded");
 
 		const panel = screen.getByTestId("health-panel");

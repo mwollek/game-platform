@@ -2,7 +2,6 @@ import { GamesPanel } from "./games-panel";
 import { HealthStatus } from "./health-status";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
 	return (
@@ -46,11 +45,10 @@ export default function Home() {
 					</CardHeader>
 					<CardContent className="space-y-6">
 						<GamesPanel />
-						<Separator className="bg-gradient-to-r from-transparent via-violet-200/70 to-transparent" />
-						<HealthStatus />
 					</CardContent>
 				</Card>
 			</section>
+			<HealthStatus />
 		</main>
 	);
 }
