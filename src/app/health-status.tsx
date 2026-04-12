@@ -19,12 +19,12 @@ export function HealthStatus() {
 		<div
 			data-testid="health-panel"
 			className={cn(
-				"space-y-3 rounded-lg border bg-background/50 p-4 transition-colors",
+				"space-y-3 rounded-xl border bg-background/50 p-4 transition-colors",
 				isHealthy &&
-					"border-emerald-500/45 bg-emerald-500/[0.07] shadow-[0_0_0_1px_rgba(16,185,129,0.12)]",
+					"border-emerald-400/50 bg-gradient-to-b from-emerald-500/[0.12] to-emerald-600/[0.06] shadow-[0_0_0_1px_rgba(52,211,153,0.2),0_12px_40px_-18px_rgba(16,185,129,0.35)]",
 				isUnhealthy &&
 					"border-red-500/45 bg-red-500/[0.07] shadow-[0_0_0_1px_rgba(239,68,68,0.12)]",
-				!isHealthy && !isUnhealthy && "border-border/70"
+				!isHealthy && !isUnhealthy && "border-white/10"
 			)}
 		>
 			<div className="flex items-center justify-between gap-3">

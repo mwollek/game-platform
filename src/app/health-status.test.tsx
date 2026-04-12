@@ -20,7 +20,7 @@ describe("HealthStatus", () => {
 		await screen.findByText("ok");
 
 		const panel = screen.getByTestId("health-panel");
-		expect(panel.className).toContain("border-emerald-500/45");
+		expect(panel.className).toContain("border-emerald-400/50");
 		expect(panel.className).not.toContain("border-red-500/45");
 	});
 
@@ -67,6 +67,6 @@ describe("HealthStatus", () => {
 
 		const panel = screen.getByTestId("health-panel");
 		expect(panel.className).toContain("border-red-500/45");
-		expect(panel.className).not.toContain("border-emerald-500/45");
+		expect(panel.className).not.toContain("border-emerald-400/50");
 	});
 });
