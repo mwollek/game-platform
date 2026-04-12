@@ -40,6 +40,7 @@ describe("HealthStatus", () => {
 					status: "ok",
 					service: "game-platform",
 					timestamp: "2026-01-01T00:00:00.000Z",
+					database: "ok",
 				});
 			})
 		);
@@ -64,6 +65,7 @@ describe("HealthStatus", () => {
 					status: "degraded",
 					service: "game-platform",
 					timestamp: "2026-01-01T00:00:00.000Z",
+					database: "error",
 				});
 			})
 		);
