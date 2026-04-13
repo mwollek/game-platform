@@ -1,6 +1,8 @@
 import { HttpResponse, http } from "msw";
 
+import { GAMES } from "@/lib/games";
 import type { HealthResponse } from "@/types/health";
+import type { GamesListResponse } from "@/types/games";
 
 export const healthyHealthResponse: HealthResponse = {
 	status: "ok",
@@ -12,5 +14,9 @@ export const healthyHealthResponse: HealthResponse = {
 export const handlers = [
 	http.get("*/api/health", () => {
 		return HttpResponse.json(healthyHealthResponse);
+	}),
+	http.get("*/api/games", () => {
+		const body: GamesListResponse = { games: [...GAMES] };
+		return HttpResponse.json(body);
 	}),
 ];

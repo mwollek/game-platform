@@ -1,5 +1,8 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-import { type GameId, GAMES } from "@/lib/games";
+import { useGames } from "@/hooks/use-games";
+import { type GameId } from "@/lib/games";
 import { cn } from "@/lib/utils";
 
 const gameVisual: Record<
@@ -51,6 +54,8 @@ const gameVisual: Record<
 };
 
 export function GamesPanel() {
+	const { games, error, isLoading } = useGames();
+
 	return (
 		<div data-testid="games-panel" className="space-y-4">
 			<div className="space-y-1">
@@ -61,8 +66,18 @@ export function GamesPanel() {
 					Jump in, beat your high score, and play a quick match.
 				</p>
 			</div>
+			{error ? (
+				<p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
+					{error}
+				</p>
+			) : null}
+			{isLoading ? (
+				<p className="text-sm text-slate-500" data-testid="games-panel-loading">
+					Loading games…
+				</p>
+			) : null}
 			<ul className={cn("grid gap-3 sm:gap-4", "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3")}>
-				{GAMES.map((game) => {
+				{games.map((game) => {
 					const {
 						emoji,
 						tagline,
