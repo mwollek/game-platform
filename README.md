@@ -31,9 +31,37 @@ npm run format        # Prettier write
 npm run format:check  # Prettier check (CI)
 ```
 
+## Database and migrations
+
+The app uses **PostgreSQL** with **Prisma**. Connection string: **`DATABASE_URL`** (see [`.env.example`](.env.example)).
+
+**On the host (Postgres already running, e.g. local install):**
+
+1. Copy env: `cp .env.example .env` and adjust `DATABASE_URL` if needed.
+2. Apply migrations: `npm run db:migrate` (deploy existing migrations) or, when you change `prisma/schema.prisma`, create/apply in dev with `npm run db:migrate:dev`.
+3. Regenerate client after schema changes: `npm run db:generate` (also runs on `npm install` via `postinstall`).
+
+**With Docker dev stack** (`docker-compose.dev.yml`): Postgres and the app start together; the app container receives `DATABASE_URL` automatically. After the stack is up, apply migrations inside the app container:
+
+```bash
+npm run docker:dev:migrate
+```
+
+That runs `prisma migrate deploy` against the compose Postgres service.
+
+**Create a new migration** (typical flow on the host): edit `prisma/schema.prisma`, then:
+
+```bash
+npm run db:migrate:dev
+```
+
+Prisma will create a folder under `prisma/migrations/` and apply it. Commit that folder. In CI/production-like deploys, use `npm run db:migrate` (or the Docker equivalent above) so only existing migrations run.
+
+**Check connectivity:** [http://localhost:3000/api/health](http://localhost:3000/api/health) includes a database probe (`database: "ok"` when the pool can run `SELECT 1`).
+
 ## Docker
 
-Postgres is not wired up yet; these stacks only run the Next.js app.
+Compose files run **Next.js and PostgreSQL** (the app waits for Postgres to be healthy before starting).
 
 ### Production-like (standalone build)
 

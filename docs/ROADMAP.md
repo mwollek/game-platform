@@ -36,17 +36,33 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-
 
 ### M1 — Database and configuration
 
+**Status: complete** (2026-04-13) — all items below checked; exit criteria met.
+
 **Goal:** Persistent layer exists before feature work depends on it.
 
-- [ ] Choose and add ORM + PostgreSQL connection (local via Docker or hosted dev DB).
-- [ ] Migration workflow documented (create/apply migrations).
-- [ ] Environment variables documented (`.env.example`).
+- [x] Choose and add ORM + PostgreSQL connection (local via Docker or hosted dev DB). _(Prisma + PostgreSQL in `docker-compose.yml` / `docker-compose.dev.yml`; client in `src/lib/prisma.ts`.)_
+- [x] Migration workflow documented (create/apply migrations). _(See README: **Database and migrations**.)_
+- [x] Environment variables documented (`.env.example`). _(Includes `DATABASE_URL`.)_
 
-**Exit criteria:** App connects to DB; at least one trivial migration applies cleanly.
+**Exit criteria:** App connects to DB; at least one trivial migration applies cleanly. _(Met: `GET /api/health` probes the DB; `prisma/migrations/20260412120000_init` applies.)_
 
 ---
 
-### M2 — Authentication
+### M2 — Snake (first playable title)
+
+**Goal:** Client-side **Snake** with fixed rules—no persistence or auth required yet.
+
+- [ ] Core loop: grid, snake movement, apple spawn, step/tick timing.
+- [ ] **Controls:** **WASD** and **arrow keys** (equivalent mapping).
+- [ ] **Win:** eating **5 apples** completes the round (victory state).
+- [ ] **Growth:** each eaten apple **adds one segment** to the snake.
+- [ ] **Loss:** collision with a **wall** ends the game (defeat state).
+
+**Exit criteria:** From a cold start, a player can move, lose on wall collision, win after five apples, and see length increase by one per apple. _(Self-collision optional; not required for this milestone.)_
+
+---
+
+### M3 — Authentication
 
 **Goal:** Users can sign up / sign in; sessions are secure and usable from server and client.
 
@@ -58,32 +74,32 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-
 
 ---
 
-### M3 — Platform shell and game slot
+### M4 — Platform shell and game slot
 
-**Goal:** Navigation and a stable place to mount games.
+**Goal:** Navigation and a stable place to mount games (including **Snake** from M2).
 
 - [ ] Layout: home, game list (can be static at first), account area.
 - [ ] Route pattern for games, e.g. `/games/[slug]`.
-- [ ] One **placeholder** mini-game or animation proving client bundle loads (no scoring yet).
+- [ ] Mount **Snake** on its slug route; coherent UX with the rest of the app (no new placeholder required if M2 is done).
 
-**Exit criteria:** Logged-in user opens a game route and sees the placeholder; UX is coherent with the rest of the app.
+**Exit criteria:** Logged-in user opens the Snake game route and plays; shell navigation and styling match platform conventions.
 
 ---
 
-### M4 — Scoring and leaderboards (first vertical slice)
+### M5 — Scoring and leaderboards (first vertical slice)
 
-**Goal:** One real game loop with server-stored scores.
+**Goal:** Server-stored scores for the existing Snake title.
 
 - [ ] DB models: `Game`, `Score` (or equivalent) with indexes for leaderboard queries.
 - [ ] Server action or route handler: **submit score** (authenticated, validate payload, rate-limit basics).
 - [ ] API or server components: **fetch leaderboard** for a game.
-- [ ] Replace placeholder with a **minimal real game** (e.g. clicker or snake-lite) that submits a score on game over.
+- [ ] **Snake** submits a score on **game over** and on **win** (five apples), using the same game identity as in the catalog.
 
-**Exit criteria:** Scores persist; leaderboard shows top N for that game; only authenticated users can submit.
+**Exit criteria:** Scores persist; leaderboard shows top N for Snake; only authenticated users can submit.
 
 ---
 
-### M5 — Hardening and polish
+### M6 — Hardening and polish
 
 **Goal:** Ready for casual use and iteration.
 
@@ -95,7 +111,7 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-
 
 ---
 
-### M6 — Multiplayer (future — do not start until M5 is stable)
+### M7 — Multiplayer (future — do not start until M6 is stable)
 
 **Goal:** Real-time play; exact design in a new ADR.
 
@@ -117,9 +133,11 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-
 
 ## Revision history
 
-| Date       | Change                                                                         |
-| ---------- | ------------------------------------------------------------------------------ |
-| 2026-04-12 | Initial roadmap and ADR 0001 alignment                                         |
-| 2026-04-12 | M0: Next.js app shell, `/api/health`, README tooling note                      |
-| 2026-04-12 | Prettier (semicolons, tabs width 4), `eslint-config-prettier`, `.editorconfig` |
-| 2026-04-12 | M0 closed: CI workflow (lint + test + build); roadmap exit criteria updated    |
+| Date       | Change                                                                                                                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| 2026-04-12 | Initial roadmap and ADR 0001 alignment                                                                                         |
+| 2026-04-12 | M0: Next.js app shell, `/api/health`, README tooling note                                                                      |
+| 2026-04-12 | Prettier (semicolons, tabs width 4), `eslint-config-prettier`, `.editorconfig`                                                 |
+| 2026-04-12 | M0 closed: CI workflow (lint + test + build); roadmap exit criteria updated                                                    |
+| 2026-04-13 | M1: Prisma + Postgres (Docker), `.env.example`, init migration, health DB check; README **Database and migrations**; M1 closed |
+| 2026-04-13 | Insert **M2 — Snake**; renumber former M2–M6 → **M3–M7**; align M4/M5 with Snake                                               |
