@@ -13,7 +13,7 @@ This document is the **source of truth** for implementation order. Update it whe
 | UI / visual language | **Light**, **pastel**, **emoji-first** game tiles; teen-friendly English — [ADR 0002](./adr/0002-ui-visual-language.md) |
 | Docs / code language | **English**; ADRs in `docs/adr/`                                                                                        |
 
-Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-visual-language.md).
+Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-visual-language.md), [ADR 0003](./adr/0003-game-client-stack.md) (game client implementation).
 
 ---
 
@@ -51,6 +51,8 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-
 ### M2 — Snake (first playable title)
 
 **Goal:** Client-side **Snake** with fixed rules—no persistence or auth required yet.
+
+**Implementation:** Follow [ADR 0003](./adr/0003-game-client-stack.md) (Canvas 2D, React as shell, mount/unmount pattern).
 
 - [ ] Core loop: grid, snake movement, apple spawn, step/tick timing.
 - [ ] **Controls:** **WASD** and **arrow keys** (equivalent mapping).
@@ -141,3 +143,4 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-
 | 2026-04-12 | M0 closed: CI workflow (lint + test + build); roadmap exit criteria updated                                                    |
 | 2026-04-13 | M1: Prisma + Postgres (Docker), `.env.example`, init migration, health DB check; README **Database and migrations**; M1 closed |
 | 2026-04-13 | Insert **M2 — Snake**; renumber former M2–M6 → **M3–M7**; align M4/M5 with Snake                                               |
+| 2026-04-13 | Add **ADR 0003** (game client stack: Canvas 2D, React shell, mount contract); link from ADR 0001 and roadmap                   |

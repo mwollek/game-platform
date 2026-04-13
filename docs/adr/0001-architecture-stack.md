@@ -14,7 +14,7 @@ We are building a web platform for simple 2D browser games with user accounts, p
 - **Language:** **TypeScript** end-to-end.
 - **Data:** **PostgreSQL** with a schema managed via migrations (ORM TBD in implementation phase — e.g. Prisma or Drizzle).
 - **Auth:** Use a solution that fits Next.js well (e.g. Auth.js / NextAuth or a hosted provider). Exact choice is a follow-up ADR when implementation starts.
-- **Games:** Client-side 2D (Canvas or a thin library). Each game is a **separate module** loaded by the platform shell, not mixed with server-only code.
+- **Games:** Client-side 2D (Canvas or a thin library). Each game is a **separate module** loaded by the platform shell, not mixed with server-only code. **Concrete defaults:** [ADR 0003](./0003-game-client-stack.md).
 - **Multiplayer (later):** Not implemented in the first milestones. When needed, add a **dedicated real-time service** or a managed real-time layer; do not block MVP on WebSocket design inside the Next serverless runtime.
 - **Testing stack:** Use **Vitest** + **React Testing Library** for component and UI-state tests, with **MSW** for deterministic HTTP mocking in tests.
 
@@ -29,3 +29,4 @@ We are building a web platform for simple 2D browser games with user accounts, p
 
 - `docs/ROADMAP.md` — milestones and execution order.
 - [ADR 0002](./0002-ui-visual-language.md) — UI visual language for the shell (light, pastel, copy tone).
+- [ADR 0003](./0003-game-client-stack.md) — 2D game client stack, React boundaries, mount contract, testing.

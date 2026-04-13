@@ -78,6 +78,7 @@ export function GamesPanel() {
 			) : null}
 			<ul className={cn("grid gap-3 sm:gap-4", "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3")}>
 				{games.map((game) => {
+					const isPlayable = game.id === "snake";
 					const {
 						emoji,
 						tagline,
@@ -139,10 +140,16 @@ export function GamesPanel() {
 										"disabled:pointer-events-none disabled:opacity-80",
 										buttonClass
 									)}
-									disabled
-									aria-disabled
+									onClick={() => {
+										if (!isPlayable) {
+											return;
+										}
+										window.location.href = `/games/${game.id}`;
+									}}
+									disabled={!isPlayable}
+									aria-disabled={!isPlayable}
 								>
-									Coming Soon
+									{isPlayable ? "Play Now" : "Coming Soon"}
 								</Button>
 							</article>
 						</li>
