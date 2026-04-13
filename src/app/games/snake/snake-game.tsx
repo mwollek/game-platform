@@ -181,7 +181,7 @@ export function SnakeGame() {
 	);
 	const phaseRef = useRef<GamePhase>("ready");
 	const starsRef = useRef<StarParticle[]>([]);
-	const winModalTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const winModalTimeoutRef = useRef<number | null>(null);
 
 	const [snapshot, setSnapshot] = useState<UiSnapshot>(() => toSnapshot(gameStateRef.current));
 	const [phase, setPhase] = useState<GamePhase>("ready");

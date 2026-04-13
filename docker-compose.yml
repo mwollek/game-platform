@@ -27,6 +27,8 @@ services:
         environment:
             NODE_ENV: production
             DATABASE_URL: postgresql://gameplatform:gameplatform@postgres:5432/gameplatform
+            AUTH_SECRET: dev-docker-auth-secret-replace-in-real-deployments-min-32-chars
+            AUTH_URL: http://localhost:3000
 
 volumes:
     postgres_data:

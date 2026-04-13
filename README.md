@@ -6,6 +6,7 @@ A web platform for simple 2D browser games: accounts, per-game scores, and leade
 
 - **[Roadmap & milestones](docs/ROADMAP.md)** — implementation order (source of truth)
 - **[ADR 0001 — Architecture](docs/adr/0001-architecture-stack.md)**
+- **[ADR 0004 — Authentication](docs/adr/0004-authentication.md)**
 
 ## Tooling
 
@@ -22,6 +23,16 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000). Health JSON: [http://localhost:3000/api/health](http://localhost:3000/api/health).
+
+### Authentication
+
+Set **`AUTH_SECRET`** in `.env` (see [`.env.example`](.env.example)) — use a long random value locally and a unique secret in production. Then:
+
+1. Apply DB migrations so the `User` table exists (`npm run db:migrate` or `npm run db:migrate:dev`).
+2. Open **Register** in the header, create an account, and **Sign in**.
+3. **`/account`** is only available when signed in; otherwise you are redirected to `/login`.
+
+Details: [ADR 0004 — Authentication](docs/adr/0004-authentication.md).
 
 ```bash
 npm run build   # production build
@@ -96,5 +107,7 @@ npm run docker:dev:build -- -d
 npm run docker:dev:down
 npm run docker:dev:logs
 ```
+
+The dev entrypoint runs **`npm install` when `package.json` / `package-lock.json` change** (tracked via a stamp under `node_modules`), so new dependencies are picked up after a pull. If anything still looks wrong, rebuild the dev image (`npm run docker:dev:build`) and restart the stack; as a last resort remove the named volume `app_dev_node_modules` for this compose project so dependencies install clean.
 
 For stable hot reload on Windows bind mounts, the dev stack uses polling (`WATCHPACK_POLLING` and `CHOKIDAR_USEPOLLING`); you can still fall back to `npm run dev` on the host without Docker.

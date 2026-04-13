@@ -50,29 +50,33 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-
 
 ### M2 — Snake (first playable title)
 
+**Status: complete** (2026-04-13) — all items below checked; exit criteria met.
+
 **Goal:** Client-side **Snake** with fixed rules—no persistence or auth required yet.
 
 **Implementation:** Follow [ADR 0003](./adr/0003-game-client-stack.md) (Canvas 2D, React as shell, mount/unmount pattern).
 
-- [ ] Core loop: grid, snake movement, apple spawn, step/tick timing.
-- [ ] **Controls:** **WASD** and **arrow keys** (equivalent mapping).
-- [ ] **Win:** eating **5 apples** completes the round (victory state).
-- [ ] **Growth:** each eaten apple **adds one segment** to the snake.
-- [ ] **Loss:** collision with a **wall** ends the game (defeat state).
+- [x] Core loop: grid, snake movement, apple spawn, step/tick timing.
+- [x] **Controls:** **WASD** and **arrow keys** (equivalent mapping).
+- [x] **Win:** eating **5 apples** completes the round (victory state).
+- [x] **Growth:** each eaten apple **adds one segment** to the snake.
+- [x] **Loss:** collision with a **wall** ends the game (defeat state).
 
-**Exit criteria:** From a cold start, a player can move, lose on wall collision, win after five apples, and see length increase by one per apple. _(Self-collision optional; not required for this milestone.)_
+**Exit criteria:** From a cold start, a player can move, lose on wall collision, win after five apples, and see length increase by one per apple. _(Self-collision optional; not required for this milestone.)_ _(Met.)_
 
 ---
 
 ### M3 — Authentication
 
+**Status: complete** (2026-04-13) — all items below checked; exit criteria met.
+
 **Goal:** Users can sign up / sign in; sessions are secure and usable from server and client.
 
-- [ ] Integrate auth library (Auth.js or provider per ADR follow-up).
-- [ ] Protected routes or server-side checks for “logged-in only” areas.
-- [ ] Minimal profile placeholder (e.g. display name).
+- [x] Integrate auth library (Auth.js or provider per ADR follow-up). _(Auth.js v5 + Credentials; [ADR 0004](./adr/0004-authentication.md).)_
+- [x] Protected routes or server-side checks for “logged-in only” areas. _(`/account` layout + `auth()`.)_
+- [x] Minimal profile placeholder (e.g. display name). _(Optional at register; editable on `/account`.)_
 
-**Exit criteria:** A test user can register/login/logout; protected shell page is inaccessible when logged out.
+**Exit criteria:** A test user can register/login/logout; protected shell page is inaccessible when logged out. _(Met.)_
 
 ---
 
@@ -144,3 +148,5 @@ Details: [ADR 0001](./adr/0001-architecture-stack.md), [ADR 0002](./adr/0002-ui-
 | 2026-04-13 | M1: Prisma + Postgres (Docker), `.env.example`, init migration, health DB check; README **Database and migrations**; M1 closed |
 | 2026-04-13 | Insert **M2 — Snake**; renumber former M2–M6 → **M3–M7**; align M4/M5 with Snake                                               |
 | 2026-04-13 | Add **ADR 0003** (game client stack: Canvas 2D, React shell, mount contract); link from ADR 0001 and roadmap                   |
+| 2026-04-13 | **M2** closed: Snake playable (grid, controls, win/lose, growth) per ADR 0003                                                  |
+| 2026-04-13 | **M3** closed: Auth.js credentials, JWT sessions, `/account`, ADR 0004; `User` + `AUTH_SECRET`                                 |

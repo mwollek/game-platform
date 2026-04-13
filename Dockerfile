@@ -11,6 +11,8 @@ RUN npm install
 FROM base AS builder
 WORKDIR /app
 ENV HUSKY=0
+ENV AUTH_SECRET=docker-build-placeholder-at-least-32-characters-long
+ENV DATABASE_URL=postgresql://gameplatform:gameplatform@localhost:5432/gameplatform
 COPY --from=deps /app/node_modules ./node_modules
 COPY package.json package-lock.json ./
 COPY prisma ./prisma

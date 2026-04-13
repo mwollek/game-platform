@@ -35,6 +35,8 @@ services:
             CHOKIDAR_USEPOLLING: "true"
             CHOKIDAR_INTERVAL: "500"
             DATABASE_URL: postgresql://gameplatform:gameplatform@postgres:5432/gameplatform
+            AUTH_SECRET: dev-docker-auth-secret-replace-in-real-deployments-min-32-chars
+            AUTH_URL: http://localhost:3000
         stdin_open: true
         tty: true
 

@@ -43,6 +43,9 @@ jobs:
               run: npm run test
 
             - name: Build
+              env:
+                  AUTH_SECRET: ci-build-auth-secret-at-least-32-characters-long
+                  DATABASE_URL: postgresql://gameplatform:gameplatform@localhost:5432/gameplatform
               run: npm run build
 
     # Deploy only on pushes to main (not on PRs or other branches).
